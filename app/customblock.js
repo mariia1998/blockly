@@ -17,8 +17,16 @@ Blockly.JavaScript['lightswitch'] = function(block) {
   var dropdown_lightcolor = block.getFieldValue('lightcolor');
   var dropdown_switch = block.getFieldValue('switch');
   // TODO: Assemble JavaScript into code variable.
-  if (dropdown_switch=='on') {
+  if (dropdown_switch=='on' && dropdown_lightcolor=='R') {
     var code = "document.getElementById('circle').style.backgroundColor='red'";
+
+  }
+  if (dropdown_switch=='on' && dropdown_lightcolor=='Y') {
+    var code = "document.getElementById('circle').style.backgroundColor='yellow'";
+
+  }
+  if (dropdown_switch=='on' && dropdown_lightcolor=='G') {
+    var code = "document.getElementById('circle').style.backgroundColor='green'";
 
   }
 
