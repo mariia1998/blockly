@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 
     <script src = "../blockly_compressed.js" > </script> <script src = "../blocks_compressed.js" > </script>
-    <!-- <script src = "../msg.js" > </script> -->
     <script src = "../javascript_compressed.js" > </script>
     <script src= "customblock.js"></script>
+	  <script src="../msg/js/en.js"></script>
     <style>
       body{
         background-color: #fff;
@@ -20,32 +21,198 @@
       }
 
       #circle{
-      height: 300px;
-      width: 300px;
+      height: 50px;
+      width: 50px;
       border-radius: 50%;
       background-color: white;
       border: solid 1px black ;
       position: absolute;
-      left: 760px;
-      top: 110px;
+      left: 630px;
+      top: 20px;
       }
     </style>
+
+
       <body>
-        <button type="button" name="button" onclick="runCode()">run JavaScript</button>
-<div id="blocklyDiv" style="width:600px ; height:480px"> </div>
+
+        <button  class="btn btn-primary" name="button" onclick="runCode()">run JavaScript</button>
+		   <button class="btn btn-secondary" name="button" onclick="showCode()">show JavaScript</button>
+       <div class="row">
+         <div class="col col-6">
+           <div class="card  text-dark">
+             <div class="card-header">
+               <span><i class="fa fa-book"></i></span>
+               en bloc
+             </div>
+             <div class="card-body  nombreDesSeances" >
+               <div id="blocklyDiv" style="width:600px ; height:480px ;">
+             </div>
+           </div>
+         </div>
+       </div>
+
+
+
+
+
+    <div class="col-6" style="top:100px"  >
+      <div class="card  text-white">
+        <div class="card-header" style="color:#1e88e5">
+          <span><i class="fa fa-book"></i></span>
+          traduction du code
+        </div>
+        <div class="card-body  nombreDesSeances" style="background-color:#1e88e5 ">
+          <div class="spinner-border" role="status" id="code">  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<
 
     <!-- <xml id = "toolbox" style = " display : none " >  -->
 
   <xml  id="toolbox" style="display: none">
 
 
-           <category name="logic">
+           <!-- <category name="logic">
               <block type="lightswitch">
               <field name="lightcolor">red</field>
               <field name="switch">on</field>
               </block>
-            </category>
-    </xml>
+            </category> -->
+
+    <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+      <category name="If">
+        <block type="controls_if"></block>
+        <block type="controls_if">
+          <mutation else="1"></mutation>
+        </block>
+        <block type="controls_if">
+          <mutation elseif="1" else="1"></mutation>
+        </block>
+      </category>
+      <category name="Boolean" colour="%{BKY_LOGIC_HUE}">
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+        <block type="logic_ternary"></block>
+      </category>
+    </category>
+    <category name="Loops" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <field name="VAR">i</field>
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+    <category name="Math" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_round"></block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo"></block>
+      <block type="math_constrain">
+        <value name="LOW">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="HIGH">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+      <block type="math_atan2"></block>
+    </category>
+    <category name="Text" colour="%{BKY_TEXTS_HUE}">
+      <block type="text"></block>
+      <block type="text_length"></block>
+      <block type="text_print"></block>
+      <block type="text_prompt_ext">
+        <value name="TEXT">
+          <block type="text"></block>
+        </value>
+      </block>
+    </category>
+    <category name="Lists" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_empty"></block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf"></block>
+      <block type="lists_getIndex"></block>
+      <block type="lists_setIndex"></block>
+    </category>
+    <sep></sep>
+    <category name="Variables" custom="VARIABLE" colour="%{BKY_VARIABLES_HUE}">
+    </category>
+    <category name="Functions" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}">
+    </category>
+    <sep></sep>
+    <category name="Library" expanded="true">
+      <category name="Allumer le cercle">
+         <block type="lightswitch">
+         <field name="lightcolor">red</field>
+         <field name="switch">on</field>
+         </block>
+       </category>
+      </category>
+
+    </category>
+  </xml>
     <div id="circle"></div>
   </div>
   <script>
@@ -63,10 +230,27 @@
                eval(code);
              } catch (e) {
                alert(e);
+
              }
            }
 
 
+    function showCode() {
+      // Generate JavaScript code and display it.
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      alert(code);
+      console.log(code);
+       document.getElementById('code').outerHTML='<h1 align="center">'+code+'</h1>'
+
+
+     }
+
+
+
+     function timedRefresh(time) {
+     	setTimeout("location.reload(true);", time);
+     }
 
   </script>
 
